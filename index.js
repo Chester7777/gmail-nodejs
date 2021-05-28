@@ -10,13 +10,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 // parse application/json
 app.use(bodyParser.json());
 
-const port = 3010;
+const smtp_login = process.env.SMTP_LOGIN || "___";
+const smtp_password = process.env.SMTP_PASSWORD || "___";
+const port = process.env.PORT || 3010;
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "es18.03.88@gmail.com", // generated ethereal user
-        pass: "qwe123QWE098", // generated ethereal password
+        user: smtp_login, // generated ethereal user
+        pass: smtp_password, // generated ethereal password
     },
 });
 
