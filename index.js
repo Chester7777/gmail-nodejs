@@ -2,10 +2,14 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const {runValidation} = require("./validators");
-const {contactFormValidation} = require("./validators/form");
-const port = process.env.PORT || 3010;
-const app = express();
+// const {runValidation} = require("./validators");
+// const {contactFormValidation} = require("./validators/form");
+const port = process.env.PORT || 5000;
+const app = express()
+
+
+
+
 // app.use(cors({origin: "https://Chester7777.github.io/portfolio"}));
 app.use(cors());
 // parse application/x-www-form-urlencoded
@@ -56,7 +60,11 @@ ${message}
     res.send('success')
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+// app.listen(port, () => {
+//     console.log(`Example app listening at http://localhost:${port}`)
+// })
 
+const server = app.listen(process.env.PORT || 5000, () => {
+    const port = server.address().port;
+    console.log(`Express is working on port ${port}`);
+});
