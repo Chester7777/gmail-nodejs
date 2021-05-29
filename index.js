@@ -2,7 +2,7 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3010;
 const app = express();
 app.use(cors({ origin: "https://Chester7777.github.io/portfolio" }));
 // parse application/x-www-form-urlencoded
@@ -13,13 +13,9 @@ app.use(bodyParser.json());
 const smtp_login = process.env.SMTP_LOGIN || "___";
 const smtp_password = process.env.SMTP_PASSWORD || "___";
 
-express()
-    .use(express.static(path.join(__dirname, 'public')))
-    .set('views', path.join(__dirname, 'views'))
-    .set('view engine', 'ejs')
 
 let transporter = nodemailer.createTransport({
-    service: "Yandex",
+    service: "gmail",
     auth: {
         user: smtp_login, // generated ethereal user
         pass: smtp_password, // generated ethereal password
