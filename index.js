@@ -31,12 +31,13 @@ app.post('/sendMessage', async (req, res) => {
     let {message, email, name} = req.body
 
 // send mail with defined transport object
-    let info = await transporter.sendMail({
-        from: 'HR WANTS ME 👻', // sender address
-        to: "es18.03.88@gmail.com", // list of receivers
-        subject: "HR WANTS ME", // Subject line
-        // text: "Hello", // plain text body
-        html: `<b>Сообщение с вашего portfolio page</b> 
+   try {
+       let info = await transporter.sendMail({
+           from: 'HR WANTS ME 👻', // sender address
+           to: "es188.033.888@gmail.com", // list of receivers
+           subject: "HR WANTS ME", // Subject line
+           // text: "Hello", // plain text body
+           html: `<b>Сообщение с вашего portfolio page</b> 
             <div> 
 name: ${name}
             </div> 
@@ -46,7 +47,10 @@ email: ${email}
             <div> 
 ${message}
             </div>`
-    });
+       });
+   } catch (e) {
+       console.log(e)
+   }
 })
 
 app.listen(port, () => {
