@@ -2,9 +2,9 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require('cors');
 const bodyParser = require('body-parser')
-
+const port = process.env.PORT || 3010;
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "https://Chester7777.github.io/portfolio" }));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 // parse application/json
@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 const smtp_login = process.env.SMTP_LOGIN || "___";
 const smtp_password = process.env.SMTP_PASSWORD || "___";
-const port = process.env.PORT || 3010;
+
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
