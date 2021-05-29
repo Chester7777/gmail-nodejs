@@ -2,6 +2,8 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const {runValidation} = require("./validators");
+const {contactFormValidation} = require("./validators/form");
 const port = process.env.PORT || 3010;
 const app = express();
 // app.use(cors({origin: "https://Chester7777.github.io/portfolio"}));
@@ -26,7 +28,7 @@ let transporter = nodemailer.createTransport({
 // app.get('/', (req, res) => {
 //     res.send('Hello')
 // })
-app.post('/sendMessage', async (req, res) => {
+app.post('/sendMessage',contactFormValidation, runValidation ,async (req, res) => {
 
     let {message, email, name} = req.body
 
