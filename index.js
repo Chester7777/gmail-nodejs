@@ -51,6 +51,7 @@ ${message}
    } catch (e) {
        console.log(e)
    }
+    res.send('success')
 })
 
 app.listen(port, () => {
