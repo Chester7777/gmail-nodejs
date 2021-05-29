@@ -23,9 +23,9 @@ let transporter = nodemailer.createTransport({
     },
 });
 
-app.get('/', (req, res) => {
-    res.send('Hello')
-})
+// app.get('/', (req, res) => {
+//     res.send('Hello')
+// })
 app.post('/sendMessage', async (req, res) => {
 
     let {message, email, name} = req.body
