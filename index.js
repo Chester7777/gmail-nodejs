@@ -2,6 +2,8 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const {runValidation} = require("./validators");
+const {contactFormValidation} = require("./validators/form");
 // const {runValidation} = require("./validators");
 // const {contactFormValidation} = require("./validators/form");
 const port = process.env.PORT || 5000;
@@ -32,7 +34,7 @@ let transporter = nodemailer.createTransport({
 // app.get('/', (req, res) => {
 //     res.send('Hello')
 // })
-app.post('/sendMessage' ,async (req, res) => {
+app.post('/sendMessage' , contactFormValidation, runValidation, async (req, res) => {
 
     let {message, email, name} = req.body
 res.header("Access-Control-Allow-Origin", "*"
