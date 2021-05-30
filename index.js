@@ -2,14 +2,10 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const {runValidation} = require("./validators");
-const {contactFormValidation} = require("./validators/form");
 // const {runValidation} = require("./validators");
 // const {contactFormValidation} = require("./validators/form");
 const port = process.env.PORT || 5000;
 const app = express()
-
-
 
 
 // app.use(cors({origin: "https://Chester7777.github.io/portfolio"}));
@@ -34,19 +30,19 @@ let transporter = nodemailer.createTransport({
 // app.get('/', (req, res) => {
 //     res.send('Hello')
 // })
-app.post('/sendMessage' , contactFormValidation, runValidation, async (req, res) => {
+app.post('/sendMessage', async (req, res) => {
 
     let {message, email, name} = req.body
-res.header("Access-Control-Allow-Origin", "*"
-)
+    res.header("Access-Control-Allow-Origin", "*"
+    )
 // send mail with defined transport object
-   try {
-       let info = await transporter.sendMail({
-           from: smtp_login, // sender address
-           to: "es18.03.88@gmail.com", // list of receivers
-           subject: "HR Message from portfolio", // Subject line
-           // text: "Hello", // plain text body
-           html: `<b>Сообщение с вашего portfolio page</b> 
+    try {
+        let info = await transporter.sendMail({
+            from: smtp_login, // sender address
+            to: "es18.03.88@gmail.com", // list of receivers
+            subject: "HR Message from portfolio", // Subject line
+            // text: "Hello", // plain text body
+            html: `<b>Сообщение с вашего portfolio page</b> 
             <div> 
 name: ${name}
             </div> 
@@ -56,10 +52,10 @@ email: ${email}
             <div> 
 ${message}
             </div>`
-       });
-   } catch (e) {
-       console.log(e)
-   }
+        });
+    } catch (e) {
+        console.log(e)
+    }
     res.send('success')
 })
 
