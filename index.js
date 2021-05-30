@@ -35,13 +35,14 @@ let transporter = nodemailer.createTransport({
 app.post('/sendMessage' ,async (req, res) => {
 
     let {message, email, name} = req.body
-
+res.header("Access-Control-Allow-Origin", "*"
+)
 // send mail with defined transport object
    try {
        let info = await transporter.sendMail({
-           from: 'HR WANTS ME 👻', // sender address
+           from: smtp_login, // sender address
            to: "es18.03.88@gmail.com", // list of receivers
-           subject: "HR WANTS ME", // Subject line
+           subject: "HR Message from portfolio", // Subject line
            // text: "Hello", // plain text body
            html: `<b>Сообщение с вашего portfolio page</b> 
             <div> 
